@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Chrome Debugging Example 2</title>
+    <script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript">
+
+        var autoupdate = true;
+        var updateInterval = 1000;
+        var counter = 0;
+
+        //Function contains deliberate mistake to demonstrate error in console
+        function incrementCounter()
+        {
+            $('#counter').html(counter);
+
+            for (var x=0; x<100;x++)
+            {
+                if (x == 0) {
+                    //Console log message
+                    console.log("Internal Loop Counter at 0");
+                }
+                
+                if (x == 50)  {
+                    //Console warning message statement
+                    console.warn("Extenal Counter Incrementing");
+                    counter++;
+                }
+
+                if (x == 99) {
+                    console.log("Internal Loop Counter at 99");
+                }
+
+            }
+
+
+            if (autoupdate) {
+                setTimeout(function () { incrementCounter() }, updateInterval);
+            }
+            else {
+                //Flag a console Error message
+                console.error("Auto Update Stopped!");
+            }
+        }
+    </script>
+</head>
+<body>
+<h2>Test Page - Example 2</h2>
+<hr />
+<h3>Simple counter:</h3>
+Counter value is: <div id="counter"><script type="text/javascript">incrementCounter();</script></div>
+<hr />
+</body>
+</html>

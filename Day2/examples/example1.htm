@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Chrome Debugging Example 1</title>
+    <script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript">
+
+        var autoupdate = true;
+        var updateInterval = 1000;
+
+        //Function contains deliberate mistake to demonstrate error in console
+        function updateDateTime() 
+        {
+            $('#currentDateTime').html(now());
+            if (autoupdate)
+            {
+                setTimeout(function () { updateDateTime() }, updateInterval);
+            }
+        }
+
+        function updateDateTime2() {
+            var currentdate = Date.toString();
+            $('#currentDateTime2').html(Date().toString());
+            if (autoupdate) {
+                setTimeout(function () { updateDateTime2() }, updateInterval);
+            }
+        }
+    </script>
+</head>
+<body>
+<h2>Test Page - Example 1</h2>
+<hr />
+<h3>Auto Date/Time Refresh: Code 1</h3>
+Current Date/Time is: <div id="currentDateTime"><script type="text/javascript">updateDateTime();</script></div>
+<hr />
+<h3>Auto Date/Time Refresh: Code 2</h3>
+Current Date/Time is: <div id="currentDateTime2"><script type="text/javascript">updateDateTime2();</script></div>
+<hr />
+</body>
+</html>
